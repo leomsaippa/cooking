@@ -25,6 +25,14 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ItemViewHo
         this.onRecipeClickListener = onRecipeClickListener;
     }
 
+    public List<Recipe> getRecipes() {
+        return recipes;
+    }
+
+    public void setRecipes(List<Recipe> recipes) {
+        this.recipes = recipes;
+    }
+
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -37,12 +45,18 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ItemViewHo
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, int i) {
 
+        Recipe recip = recipes.get(i);
+        itemViewHolder.recipe.setText(recip.getName());
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        int size = 0;
+        if (recipes != null){
+            size = recipes.size();
+        }
+        return size;
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
