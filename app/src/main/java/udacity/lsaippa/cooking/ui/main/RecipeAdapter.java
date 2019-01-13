@@ -1,4 +1,4 @@
-package udacity.lsaippa.cooking.ui;
+package udacity.lsaippa.cooking.ui.main;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;

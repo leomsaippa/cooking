@@ -1,4 +1,4 @@
-package udacity.lsaippa.cooking.ui;
+package udacity.lsaippa.cooking.ui.main;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +15,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import udacity.lsaippa.cooking.R;
 import udacity.lsaippa.cooking.network.model.Recipe;
 
