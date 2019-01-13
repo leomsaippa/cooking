@@ -1,4 +1,4 @@
-package udacity.lsaippa.cooking.ui;
+package udacity.lsaippa.cooking.ui.main;
 
 import android.content.Context;
 import android.os.Bundle;
