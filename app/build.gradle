@@ -27,6 +27,19 @@ dependencies {
     implementation "com.jakewharton:butterknife:$butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterKnifeVersion"
 
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofitLibVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitLibVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitLibVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptor"
+
+
+    // reactive
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava2Version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
+
+
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
