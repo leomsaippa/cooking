@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -18,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import udacity.lsaippa.cooking.R;
 import udacity.lsaippa.cooking.network.model.Recipe;
-import udacity.lsaippa.cooking.ui.detail.DetailActivity;
+import udacity.lsaippa.cooking.ui.detail.recipe.DetailActivity;
 
 import static udacity.lsaippa.cooking.utils.AppConstants.RECIPE_TAG;
 

@@ -16,7 +16,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import udacity.lsaippa.cooking.R;
 import udacity.lsaippa.cooking.network.model.Recipe;
-import udacity.lsaippa.cooking.ui.detail.DetailActivity;
 
 import static udacity.lsaippa.cooking.utils.AppConstants.RECIPE_TAG;
 
