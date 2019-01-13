@@ -1,4 +1,4 @@
-package udacity.lsaippa.cooking.ui.main;
+package udacity.lsaippa.cooking.ui;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -25,14 +25,6 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ItemViewHo
         this.onRecipeClickListener = onRecipeClickListener;
     }
 
-    public List<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(List<Recipe> recipes) {
-        this.recipes = recipes;
-    }
-
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -45,18 +37,12 @@ public class RecipeAdapter extends RecyclerView.Adapter<RecipeAdapter.ItemViewHo
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, int i) {
 
-        Recipe recip = recipes.get(i);
-        itemViewHolder.recipe.setText(recip.getName());
 
     }
 
     @Override
     public int getItemCount() {
-        int size = 0;
-        if (recipes != null){
-            size = recipes.size();
-        }
-        return size;
+        return 0;
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

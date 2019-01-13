@@ -1,4 +1,3 @@
 <resources>
     <string name="app_name">cooking</string>
-    <string name="ingredient_quantity_and_measure">%1$.2f %2$s</string>
 </resources>
