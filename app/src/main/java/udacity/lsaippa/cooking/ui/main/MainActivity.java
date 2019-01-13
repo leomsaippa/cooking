@@ -1,5 +1,6 @@
 package udacity.lsaippa.cooking.ui.main;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import udacity.lsaippa.cooking.R;
 import udacity.lsaippa.cooking.network.model.Recipe;
+import udacity.lsaippa.cooking.ui.detail.DetailActivity;
+
+import static udacity.lsaippa.cooking.utils.AppConstants.RECIPE_TAG;
 
 public class MainActivity extends AppCompatActivity implements RecipeAdapter.OnRecipeClickListener, RecipesFragment.GetMoviesCallbacks {
 
@@ -103,8 +107,10 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.OnR
 
     @Override
     public void onRecipeItemClick(Recipe recipe) {
-        Log.d("test","Abrir detail");
+        Intent intent = new Intent(MainActivity.this,DetailActivity.class);
+        intent.putExtra(RECIPE_TAG, recipe);
 
+        startActivity(intent);
     }
 
     @Override
