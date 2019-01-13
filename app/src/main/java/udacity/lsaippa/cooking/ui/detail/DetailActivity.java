@@ -65,6 +65,6 @@ public class DetailActivity extends AppCompatActivity implements DetailRecipeAda
 
     @Override
     public void onClickStep(Step step) {
-        Toast.makeText(this, "Abrir details", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Abrir details: " + step.getShortDescription(), Toast.LENGTH_SHORT).show();
     }
 }
