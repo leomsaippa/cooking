@@ -8,18 +8,22 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat">
+        android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabMode="scrollable"
+            app:tabGravity="fill"
             android:layout_gravity="top" />
 
     </android.support.v4.view.ViewPager>
