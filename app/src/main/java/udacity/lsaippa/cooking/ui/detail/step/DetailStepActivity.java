@@ -3,6 +3,9 @@ package udacity.lsaippa.cooking.ui.detail.step;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -49,6 +52,19 @@ public class DetailStepActivity extends AppCompatActivity {
             int tabShowing = i +1 ;
             mTabLayout.addTab(mTabLayout.newTab().setText(String.valueOf(tabShowing)));
         }
+
+
+        FragmentManager fragMan = getSupportFragmentManager();
+        FragmentTransaction fragTransaction = fragMan.beginTransaction();
+
+        Bundle newBundle = new Bundle();
+        newBundle.putParcelable(STEP_TAG, currentStep);
+        Fragment fragment = new DetailStepFragment();
+        fragment.setArguments(newBundle);
+
+        fragTransaction.add(R.id.step_container, fragment , DetailStepActivity.class.getSimpleName()) ;
+
+        fragTransaction.commit();
 
     }
 
