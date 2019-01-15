@@ -17,7 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import udacity.lsaippa.cooking.R;
 import udacity.lsaippa.cooking.network.model.Recipe;
-import udacity.lsaippa.cooking.ui.detail.recipe.DetailActivity;
+import udacity.lsaippa.cooking.ui.detail.recipe.DetailRecipeActivity;
 
 import static udacity.lsaippa.cooking.utils.AppConstants.RECIPE_TAG;
 
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.OnR
 
     @Override
     public void onRecipeItemClick(Recipe recipe) {
-        Intent intent = new Intent(MainActivity.this,DetailActivity.class);
+        Intent intent = new Intent(MainActivity.this,DetailRecipeActivity.class);
         intent.putExtra(RECIPE_TAG, recipe);
 
         startActivity(intent);

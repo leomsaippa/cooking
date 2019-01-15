@@ -55,7 +55,7 @@ public class DetailRecipeFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         DetailRecipeAdapter detailRecipeAdapter = new DetailRecipeAdapter();
 
-        detailRecipeAdapter.setOnStepClickListener((DetailActivity)getActivity());
+        detailRecipeAdapter.setOnStepClickListener((DetailRecipeActivity)getActivity());
         mRecyclerView.setAdapter(detailRecipeAdapter);
 
         detailRecipeAdapter.setData(recipe.getIngredients(), recipe.getSteps());

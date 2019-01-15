@@ -15,7 +15,7 @@ import udacity.lsaippa.cooking.network.model.Step;
 
 import static udacity.lsaippa.cooking.utils.AppConstants.RECIPE_TAG;
 
-public class DetailActivity extends AppCompatActivity implements DetailRecipeAdapter.OnStepClickListener {
+public class DetailRecipeActivity extends AppCompatActivity implements DetailRecipeAdapter.OnStepClickListener {
 
     Recipe recipe;
     @Override
