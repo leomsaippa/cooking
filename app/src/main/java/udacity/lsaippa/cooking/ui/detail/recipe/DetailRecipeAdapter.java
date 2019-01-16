@@ -87,7 +87,10 @@ public class DetailRecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             case STEP:
                 Step step = steps.get(getStepPosition(i));
                 StepsViewHolder stepsViewHolder = (StepsViewHolder) viewHolder;
-                String stepNumberText = getStepPosition(i) + 1 + " )" + step.getShortDescription();
+                String position = String.valueOf(getStepPosition(i));
+                if(position.equals("0"))
+                    position = "";
+                String stepNumberText = position + "-" + step.getShortDescription();
                 stepsViewHolder.mStepName.setText(stepNumberText);
 
                 break;
