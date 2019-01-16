@@ -1,5 +1,6 @@
-package udacity.lsaippa.cooking.ui.detail;
+package udacity.lsaippa.cooking.ui.detail.recipe;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,18 +13,19 @@ import android.widget.Toast;
 import udacity.lsaippa.cooking.R;
 import udacity.lsaippa.cooking.network.model.Recipe;
 import udacity.lsaippa.cooking.network.model.Step;
-import udacity.lsaippa.cooking.ui.detail.recipe.DetailRecipeAdapter;
-import udacity.lsaippa.cooking.ui.detail.recipe.DetailRecipeFragment;
+import udacity.lsaippa.cooking.ui.detail.step.DetailStepActivity;
 
 import static udacity.lsaippa.cooking.utils.AppConstants.RECIPE_TAG;
+import static udacity.lsaippa.cooking.utils.AppConstants.STEPS_RECIPE_TAG;
+import static udacity.lsaippa.cooking.utils.AppConstants.STEP_TAG;
 
-public class DetailActivity extends AppCompatActivity implements DetailRecipeAdapter.OnStepClickListener {
+public class DetailRecipeActivity extends AppCompatActivity implements DetailRecipeAdapter.OnStepClickListener {
 
     Recipe recipe;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
+        setContentView(R.layout.activity_detail_recipe);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null || getIntent().hasExtra(RECIPE_TAG)) {
@@ -65,6 +67,10 @@ public class DetailActivity extends AppCompatActivity implements DetailRecipeAda
 
     @Override
     public void onClickStep(Step step) {
-        Toast.makeText(this, "Abrir details: " + step.getShortDescription(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(DetailRecipeActivity.this,DetailStepActivity.class);
+        intent.putExtra(STEP_TAG, step);
+        intent.putParcelableArrayListExtra(STEPS_RECIPE_TAG,recipe.getSteps());
+
+        startActivity(intent);
     }
 }
