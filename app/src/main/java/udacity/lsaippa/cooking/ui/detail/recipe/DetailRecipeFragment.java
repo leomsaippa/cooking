@@ -9,6 +9,9 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -16,6 +19,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import udacity.lsaippa.cooking.R;
 import udacity.lsaippa.cooking.network.model.Recipe;
+import udacity.lsaippa.cooking.shared_preferences.AppSharedPref;
+import udacity.lsaippa.cooking.widget.RecipeWidgetProvider;
 
 import static udacity.lsaippa.cooking.utils.AppConstants.RECIPE_TAG;
 
@@ -25,6 +30,15 @@ public class DetailRecipeFragment extends Fragment {
 
     @BindView(R.id.rv_detail)
     RecyclerView mRecyclerView;
+
+    AppSharedPref appSharedPref;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+        appSharedPref = new AppSharedPref(getActivity());
+    }
 
     @Nullable
     @Override
@@ -61,5 +75,22 @@ public class DetailRecipeFragment extends Fragment {
         detailRecipeAdapter.setData(recipe.getIngredients(), recipe.getSteps());
         detailRecipeAdapter.notifyDataSetChanged();
 
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu,menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+
+        if ( itemId == R.id.add_widget){
+            appSharedPref.saveWidgetRecipe(recipe);
+            RecipeWidgetProvider.updateWidget(getActivity());
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -83,6 +83,7 @@ public class DetailStepActivity extends AppCompatActivity {
         //Todo move screen to correct position view
         TabLayout.Tab tab = mTabLayout.getTabAt(currentStepId);
 
+        mViewPager.setCurrentItem(currentStepId);
         if(tab!=null)
             tab.select();
 
