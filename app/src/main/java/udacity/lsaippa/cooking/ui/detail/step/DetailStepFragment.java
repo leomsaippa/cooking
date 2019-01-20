@@ -31,15 +31,36 @@ import static udacity.lsaippa.cooking.utils.AppConstants.STEP_TAG;
 @SuppressWarnings("ALL")
 public class DetailStepFragment extends Fragment {
 
+    public static final String TAG = DetailStepFragment.class.getSimpleName();
     @BindView(R.id.simple_exo_player_view)
     PlayerView mPlayerView;
 
     @BindView(R.id.tv_step_description)
     TextView mDescription;
 
-    private long playerTimePosition;
-    private ExoPlayer exoPlayer;
-    private Step currentStep;
+    private long mPlayerTimePosition;
+    private ExoPlayer mExoPlayer;
+    private Step mCurrentStep;
+
+    private static final String PLAYER_TIME_POSITION = "player-position-time";
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setExtras();
+    }
+
+
+    private void setExtras(){
+        if(getArguments() != null){
+            if(getArguments().getParcelable(STEP_TAG) != null){
+                mCurrentStep = getArguments().getParcelable(STEP_TAG);
+            }
+
+        }
+    }
+
 
     @Nullable
     @Override
@@ -47,26 +68,48 @@ public class DetailStepFragment extends Fragment {
         View view = inflater.inflate(R.layout.frg_detail_step,container,false);
         if(getArguments() != null){
             if(getArguments().getParcelable(STEP_TAG) != null)
-                currentStep = getArguments().getParcelable(STEP_TAG);
+                mCurrentStep = getArguments().getParcelable(STEP_TAG);
         }
 
         ButterKnife.bind(this,view);
 
         mPlayerView.setResizeMode(AspectRatioFrameLayout.RESIZE_MODE_FIT);
 
-        if (currentStep != null){
-            mDescription.setText(currentStep.getDescription());
+        if (mCurrentStep != null){
+            mDescription.setText(mCurrentStep.getDescription());
         }
 
         return view;
     }
 
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        if(savedInstanceState != null){
+            mPlayerTimePosition = savedInstanceState.getLong(PLAYER_TIME_POSITION, 0L);
+        }
+
+    }
+
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        if(mExoPlayer != null) {
+            outState.putLong(PLAYER_TIME_POSITION, mExoPlayer.getCurrentPosition());
+        }
+    }
+
+
     @Override
     public void onStart() {
         super.onStart();
 
-        if (Util.SDK_INT > 23 && currentStep != null) {
-            setUpPlayer(currentStep.getVideoURL());
+        if (Util.SDK_INT > 23 && mCurrentStep != null) {
+            setUpPlayer(mCurrentStep.getVideoURL());
         }
     }
 
@@ -74,8 +117,8 @@ public class DetailStepFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        if ((Util.SDK_INT <= 23 || exoPlayer == null) && currentStep != null) {
-            setUpPlayer(currentStep.getVideoURL());
+        if ((Util.SDK_INT <= 23 || mExoPlayer == null) && mCurrentStep != null) {
+            setUpPlayer(mCurrentStep.getVideoURL());
         }
     }
 
@@ -86,12 +129,12 @@ public class DetailStepFragment extends Fragment {
             TrackSelector trackSelector = new DefaultTrackSelector();
 
 
-            exoPlayer = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector);
-            exoPlayer.prepare(buildMediaSource(Uri.parse(stepUrlPath)), false, true);
-            exoPlayer.seekTo(playerTimePosition);
-            exoPlayer.setPlayWhenReady(true);
+            mExoPlayer = ExoPlayerFactory.newSimpleInstance(getActivity(), trackSelector);
+            mExoPlayer.prepare(buildMediaSource(Uri.parse(stepUrlPath)), false, true);
+            mExoPlayer.seekTo(mPlayerTimePosition);
+            mExoPlayer.setPlayWhenReady(true);
 
-            mPlayerView.setPlayer(exoPlayer);
+            mPlayerView.setPlayer(mExoPlayer);
 
         } else {
             mPlayerView.setVisibility(View.GONE);
@@ -126,10 +169,10 @@ public class DetailStepFragment extends Fragment {
 
 
     private void releasePlayer() {
-        if (exoPlayer != null) {
-            playerTimePosition = exoPlayer.getCurrentPosition();
-            exoPlayer.stop();
-            exoPlayer.release();
+        if (mExoPlayer != null) {
+            mPlayerTimePosition = mExoPlayer.getCurrentPosition();
+            mExoPlayer.stop();
+            mExoPlayer.release();
         }
     }
 

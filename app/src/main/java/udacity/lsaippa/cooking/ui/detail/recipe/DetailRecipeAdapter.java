@@ -5,7 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -93,6 +96,9 @@ public class DetailRecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     position = "";
                 String stepNumberText = position + "-" + step.getShortDescription();
                 stepsViewHolder.mStepName.setText(stepNumberText);
+                if (isValidThumbnail(step.getThumbnailURL())){
+                    Picasso.get().load(step.getThumbnailURL()).into(stepsViewHolder.mStepThumbNail);
+                }
 
                 break;
         }
@@ -123,6 +129,18 @@ public class DetailRecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         return total;
     }
 
+    private boolean isValidThumbnail(String pathToThumbnail){
+        boolean ret = false;
+        if ( pathToThumbnail != null && !pathToThumbnail.isEmpty()){
+            String fileType = pathToThumbnail.substring(pathToThumbnail.lastIndexOf("."), pathToThumbnail.length());
+            if (fileType.equalsIgnoreCase(".jpg") || fileType.equalsIgnoreCase(".png")){
+                ret = true;
+            }
+        }
+
+        return ret;
+    }
+
     public int getStepPosition(int adapterPosition){
         return adapterPosition - ingredients.size();
     }
@@ -130,10 +148,12 @@ public class DetailRecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public class StepsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private final TextView mStepName;
+        private final ImageView mStepThumbNail;
 
         StepsViewHolder(@NonNull View view) {
             super(view);
             mStepName = view.findViewById(R.id.tv_step_name);
+            mStepThumbNail = view.findViewById(R.id.imv_step_thumbnail);
             view.setOnClickListener(this);
 
         }
