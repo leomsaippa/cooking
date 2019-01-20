@@ -71,12 +71,12 @@ public class RecipeWidgetService extends RemoteViewsService {
             String quantityAndMeasure = String.format(mContext.getString(R.string.ingredient_quantity_and_measure),
                     ingredient.getQuantity(), ingredient.getMeasure());
 
-            views.setTextViewText(R.id.textView_ingredient_title, title);
-            views.setTextViewText(R.id.textView_ingredient_quantity_and_measure, quantityAndMeasure);
+            views.setTextViewText(R.id.tv_ingredient_title, title);
+            views.setTextViewText(R.id.tv_ingredientes_quantity, quantityAndMeasure);
 
             Intent fillIntent = new Intent();
             fillIntent.putExtra(Recipe.class.getSimpleName(), recipe);
-            views.setOnClickFillInIntent(R.id.textView_ingredient_title, fillIntent);
+            views.setOnClickFillInIntent(R.id.tv_ingredient_title, fillIntent);
 
             return views;
 
