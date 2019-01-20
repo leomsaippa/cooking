@@ -25,6 +25,7 @@ import udacity.lsaippa.cooking.utils.IdleResource;
 
 import static udacity.lsaippa.cooking.utils.AppConstants.RECIPE_TAG;
 
+@SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity implements RecipeAdapter.OnRecipeClickListener, RecipesFragment.GetMoviesCallbacks {
 
     @SuppressWarnings("WeakerAccess")

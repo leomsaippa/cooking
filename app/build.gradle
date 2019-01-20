@@ -36,6 +36,7 @@ dependencies {
 
     // reactive
     implementation "io.reactivex.rxjava2:rxjava:$rxjava2Version"
+    //noinspection GradleDependency
     implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
 
 

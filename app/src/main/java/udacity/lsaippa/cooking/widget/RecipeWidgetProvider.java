@@ -13,6 +13,7 @@ import udacity.lsaippa.cooking.network.model.Recipe;
 import udacity.lsaippa.cooking.shared_preferences.AppSharedPref;
 import udacity.lsaippa.cooking.ui.detail.recipe.DetailRecipeActivity;
 
+@SuppressWarnings("ALL")
 public class RecipeWidgetProvider extends AppWidgetProvider {
 
     AppSharedPref appSharedPreferences;

@@ -19,6 +19,7 @@ import static udacity.lsaippa.cooking.utils.AppConstants.RECIPE_TAG;
 import static udacity.lsaippa.cooking.utils.AppConstants.STEPS_RECIPE_TAG;
 import static udacity.lsaippa.cooking.utils.AppConstants.STEP_TAG;
 
+@SuppressWarnings("ALL")
 public class DetailRecipeActivity extends AppCompatActivity implements DetailRecipeAdapter.OnStepClickListener {
 
     private boolean isTablet;
@@ -76,8 +77,7 @@ public class DetailRecipeActivity extends AppCompatActivity implements DetailRec
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             Fragment fragmentStep = new DetailStepFragment();
             Bundle newBundle = new Bundle();
-            Step currentStep =  recipe.getSteps().get(0);
-            newBundle.putParcelable(STEP_TAG, currentStep);
+            newBundle.putParcelable(STEP_TAG, step);
             fragmentStep.setArguments(newBundle);
             fragmentTransaction.replace(R.id.recipe_frame_step_container, fragmentStep, DetailStepFragment.class.getSimpleName());
             fragmentTransaction.commit();

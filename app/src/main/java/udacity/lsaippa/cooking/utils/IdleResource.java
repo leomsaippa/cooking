@@ -6,6 +6,7 @@ import android.support.test.espresso.IdlingResource;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+@SuppressWarnings("ALL")
 public class IdleResource implements IdlingResource {
 
     @Nullable
@@ -31,6 +32,7 @@ public class IdleResource implements IdlingResource {
     public void setIdleState(boolean isIdleNow) {
         isIdle.set(isIdleNow);
         if (isIdleNow && mCallback != null) {
+            //noinspection ConstantConditions
             mCallback.onTransitionToIdle();
         }
     }

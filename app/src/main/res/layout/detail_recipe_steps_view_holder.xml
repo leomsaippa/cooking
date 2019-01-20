@@ -19,6 +19,7 @@ android:orientation="horizontal">
     android:layout_height="wrap_content"
     android:layout_gravity="end"
     android:src="@android:drawable/ic_media_play"
+    android:contentDescription="@string/play"
     />
 </FrameLayout>
 

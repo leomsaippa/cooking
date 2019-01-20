@@ -20,6 +20,7 @@ import udacity.lsaippa.cooking.network.model.Step;
 import static udacity.lsaippa.cooking.utils.AppConstants.STEPS_RECIPE_TAG;
 import static udacity.lsaippa.cooking.utils.AppConstants.STEP_TAG;
 
+@SuppressWarnings("ALL")
 public class DetailStepActivity extends AppCompatActivity {
 
     @BindView(R.id.tab_layout)
@@ -67,7 +68,7 @@ public class DetailStepActivity extends AppCompatActivity {
         if (bundle != null || getIntent().hasExtra(STEP_TAG)) {
             steps = getIntent().getParcelableArrayListExtra(STEPS_RECIPE_TAG);
             currentStep = getIntent().getParcelableExtra(STEP_TAG);
-            setToolbarNameRecipe("Recipe Steps");
+            setToolbarNameRecipe();
             currentStepId = currentStep.getId();
             quantitySteps = steps.size();
         }
@@ -105,10 +106,10 @@ public class DetailStepActivity extends AppCompatActivity {
         fragTransaction.commit();
     }
 
-    private void setToolbarNameRecipe(String recipeName) {
+    private void setToolbarNameRecipe() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setTitle(recipeName);
+            actionBar.setTitle("Recipe Steps");
         }
     }
 

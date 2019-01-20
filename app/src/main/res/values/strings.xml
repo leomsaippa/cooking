@@ -4,4 +4,8 @@
     <string name="add_widget">Add widget</string>
     <string name="connection_error">Connection error!</string>
     <string name="try_again">Try again</string>
+    <string name="widget">Widget</string>
+    <string name="widget_is_empty">Widget is empty</string>
+    <string name="recipe_book">Recipe Book</string>
+    <string name="play">Play</string>
 </resources>

@@ -12,6 +12,7 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:src="@drawable/recipe"
+        android:contentDescription="@string/recipe_book"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
