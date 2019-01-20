@@ -42,7 +42,7 @@ dependencies {
 
     implementation "com.android.support:design:$compatLibVersion"
 
-
+    implementation "com.squareup.picasso:picasso:$picassoLibVersion"
 
     implementation "com.google.android.exoplayer:exoplayer-core:$exoplayerVersion"
     implementation "com.google.android.exoplayer:exoplayer-ui:$exoplayerVersion"
