@@ -15,6 +15,7 @@ import io.reactivex.schedulers.Schedulers;
 import udacity.lsaippa.cooking.network.api.AppApiHelper;
 import udacity.lsaippa.cooking.network.model.Recipe;
 
+@SuppressWarnings("ALL")
 public class RecipesFragment extends Fragment {
 
     public static final String TAG = RecipesFragment.class.getSimpleName();

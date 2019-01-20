@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder;
 
 import udacity.lsaippa.cooking.network.model.Recipe;
 
+@SuppressWarnings("ALL")
 public class MockJson {
 
 

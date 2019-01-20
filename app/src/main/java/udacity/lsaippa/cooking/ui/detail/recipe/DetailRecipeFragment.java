@@ -24,6 +24,7 @@ import udacity.lsaippa.cooking.widget.RecipeWidgetProvider;
 
 import static udacity.lsaippa.cooking.utils.AppConstants.RECIPE_TAG;
 
+@SuppressWarnings("ALL")
 public class DetailRecipeFragment extends Fragment {
 
     Recipe recipe;

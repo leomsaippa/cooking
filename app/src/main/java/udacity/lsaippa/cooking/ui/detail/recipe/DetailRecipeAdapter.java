@@ -13,6 +13,7 @@ import udacity.lsaippa.cooking.R;
 import udacity.lsaippa.cooking.network.model.Ingredient;
 import udacity.lsaippa.cooking.network.model.Step;
 
+@SuppressWarnings("ALL")
 public class DetailRecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
@@ -140,7 +141,8 @@ public class DetailRecipeAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         @Override
         public void onClick(View v) {
             Step step = steps.get(getStepPosition(getAdapterPosition()));
-            onStepClickListener.onClickStep(step);        }
+            onStepClickListener.onClickStep(step);
+        }
     }
     public class IngredientsViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 

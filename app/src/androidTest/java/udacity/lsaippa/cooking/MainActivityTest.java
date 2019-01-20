@@ -1,6 +1,5 @@
 package udacity.lsaippa.cooking;
 
-import android.support.design.widget.AppBarLayout;
 import android.support.test.espresso.IdlingRegistry;
 import android.support.test.espresso.IdlingResource;
 import android.support.test.espresso.contrib.RecyclerViewActions;
@@ -29,14 +28,12 @@ import static android.support.test.espresso.matcher.ViewMatchers.withResourceNam
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.Matchers.allOf;
 
+@SuppressWarnings("ALL")
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTest {
 
 
     private IdlingResource mIdlingResource;
-
-    private int mPositionToTest = 0;
-    private String mTitleRecipeToTest = "Nutella Pie";
 
     @Before
     public void setup() {
@@ -67,9 +64,11 @@ public class MainActivityTest {
     @Test
     public void clickOnNutellaPie_OpenDetailWithCorrectToolbarName() {
 
+        int mPositionToTest = 0;
         onView(withId(R.id.rv_recipes))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(mPositionToTest, click()));
 
+        String mTitleRecipeToTest = "Nutella Pie";
         onView(allOf(instanceOf(TextView.class),
                 withParent(withResourceName(mTitleRecipeToTest))));
     }

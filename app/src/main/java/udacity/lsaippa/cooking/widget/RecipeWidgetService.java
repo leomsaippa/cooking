@@ -13,6 +13,7 @@ import udacity.lsaippa.cooking.network.model.Ingredient;
 import udacity.lsaippa.cooking.network.model.Recipe;
 import udacity.lsaippa.cooking.shared_preferences.AppSharedPref;
 
+@SuppressWarnings("ALL")
 public class RecipeWidgetService extends RemoteViewsService {
 
     @Override

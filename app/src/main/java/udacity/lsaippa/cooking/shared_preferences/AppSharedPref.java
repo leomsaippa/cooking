@@ -8,6 +8,7 @@ import com.google.gson.Gson;
 
 import udacity.lsaippa.cooking.network.model.Recipe;
 
+@SuppressWarnings("ALL")
 public class AppSharedPref implements SharedPref{
 
     Context context;

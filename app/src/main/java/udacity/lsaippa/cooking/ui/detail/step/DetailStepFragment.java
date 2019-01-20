@@ -28,6 +28,7 @@ import udacity.lsaippa.cooking.network.model.Step;
 
 import static udacity.lsaippa.cooking.utils.AppConstants.STEP_TAG;
 
+@SuppressWarnings("ALL")
 public class DetailStepFragment extends Fragment {
 
     @BindView(R.id.simple_exo_player_view)
@@ -44,7 +45,10 @@ public class DetailStepFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frg_detail_step,container,false);
-        currentStep = getArguments().getParcelable(STEP_TAG);
+        if(getArguments() != null){
+            if(getArguments().getParcelable(STEP_TAG) != null)
+                currentStep = getArguments().getParcelable(STEP_TAG);
+        }
 
         ButterKnife.bind(this,view);
 
@@ -95,6 +99,7 @@ public class DetailStepFragment extends Fragment {
     }
 
 
+    @SuppressWarnings("ConstantConditions")
     private ExtractorMediaSource buildMediaSource(Uri uri) {
 
         return new ExtractorMediaSource.Factory(
