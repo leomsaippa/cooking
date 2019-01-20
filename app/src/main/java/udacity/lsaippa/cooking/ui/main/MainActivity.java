@@ -17,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import udacity.lsaippa.cooking.R;
 import udacity.lsaippa.cooking.network.model.Recipe;
 import udacity.lsaippa.cooking.ui.detail.recipe.DetailRecipeActivity;
@@ -125,6 +126,10 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.OnR
         mRecipeAdapter.notifyDataSetChanged();
     }
 
+    @OnClick(R.id.btn_retry)
+    public void onBtnClickTryAgain(View view) {
+        getRecipes();
+    }
     @Override
     public void onRecipeLoadError(Throwable throwable) {
         showLoadingError();
