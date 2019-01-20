@@ -1,6 +1,7 @@
 package udacity.lsaippa.cooking.ui.detail.step;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -23,6 +24,7 @@ import static udacity.lsaippa.cooking.utils.AppConstants.STEP_TAG;
 @SuppressWarnings("ALL")
 public class DetailStepActivity extends AppCompatActivity {
 
+    public static final String TAG = DetailStepActivity.class.getSimpleName();
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
     @BindView(R.id.view_pager)
@@ -38,7 +40,19 @@ public class DetailStepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_step);
 
-        setup();
+        if(savedInstanceState != null){
+            steps = savedInstanceState.getParcelableArrayList(STEPS_RECIPE_TAG);
+            currentStep = savedInstanceState.getParcelable(STEP_TAG);
+            setToolbarNameRecipe();
+            currentStepId = currentStep.getId();
+            quantitySteps = steps.size();
+            setup();
+        }else{
+            setExtras();
+            setup();
+            openNewStepTab(currentStep);
+        }
+
 
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -63,16 +77,6 @@ public class DetailStepActivity extends AppCompatActivity {
     private void setup() {
         ButterKnife.bind(this);
         mTabLayout.setupWithViewPager(mViewPager);
-
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null || getIntent().hasExtra(STEP_TAG)) {
-            steps = getIntent().getParcelableArrayListExtra(STEPS_RECIPE_TAG);
-            currentStep = getIntent().getParcelableExtra(STEP_TAG);
-            setToolbarNameRecipe();
-            currentStepId = currentStep.getId();
-            quantitySteps = steps.size();
-        }
-
         for(int i=0;i<quantitySteps;i++){
             String tabShowing = String.valueOf(i);
             if(tabShowing.equals("0"))
@@ -88,7 +92,6 @@ public class DetailStepActivity extends AppCompatActivity {
         if(tab!=null)
             tab.select();
 
-        openNewStepTab(currentStep);
     }
 
     private void openNewStepTab(Step currentStep) {
@@ -110,6 +113,27 @@ public class DetailStepActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setTitle("Recipe Steps");
+        }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList(STEPS_RECIPE_TAG,steps);
+        outState.putParcelable(STEP_TAG,currentStep);
+
+    }
+
+
+    private void setExtras(){
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null || getIntent().hasExtra(STEP_TAG)) {
+            steps = getIntent().getParcelableArrayListExtra(STEPS_RECIPE_TAG);
+            currentStep = getIntent().getParcelableExtra(STEP_TAG);
+            setToolbarNameRecipe();
+            currentStepId = currentStep.getId();
+            quantitySteps = steps.size();
         }
     }
 
