@@ -1,6 +1,8 @@
 package udacity.lsaippa.cooking.ui.main;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.annotation.VisibleForTesting;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import butterknife.ButterKnife;
 import udacity.lsaippa.cooking.R;
 import udacity.lsaippa.cooking.network.model.Recipe;
 import udacity.lsaippa.cooking.ui.detail.recipe.DetailRecipeActivity;
+import udacity.lsaippa.cooking.utils.IdleResource;
 
 import static udacity.lsaippa.cooking.utils.AppConstants.RECIPE_TAG;
 
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.OnR
 
     private RecipeAdapter mRecipeAdapter;
     private RecipesFragment mRecipesFragment;
+    private IdleResource mIdleResource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.OnR
     }
 
     private void setup() {
+        setIdleState(false);
         GridLayoutManager layoutManager;
 
         layoutManager = new GridLayoutManager(this, 2);
@@ -114,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.OnR
 
     @Override
     public void onRecipeLoadResult(List<Recipe> recipes) {
+        setIdleState(true);
         showRecipes();
         mRecipeAdapter.setRecipes(recipes);
         mRecipeAdapter.notifyDataSetChanged();
@@ -122,5 +128,18 @@ public class MainActivity extends AppCompatActivity implements RecipeAdapter.OnR
     @Override
     public void onRecipeLoadError(Throwable throwable) {
         showLoadingError();
+    }
+
+    @NonNull
+    @VisibleForTesting(otherwise = VisibleForTesting.PACKAGE_PRIVATE)
+    public IdleResource getIdlingResource() {
+        if (mIdleResource == null) {
+            mIdleResource = new IdleResource();
+        }
+        return mIdleResource;
+    }
+
+    private void setIdleState(boolean isIdle){
+        getIdlingResource().setIdleState(isIdle);
     }
 }

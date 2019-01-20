@@ -40,7 +40,6 @@ project.ext {
     picassoLibVersion = '2.71828'
     rxjava2Version = '2.0.6'
     rxandroidVersion = '2.0.1'
-    androidArch = '1.1.0'
-    exoplayer_version = '2.7.1'
-    espresso_version = '3.0.1'
+    exoplayerVersion = '2.7.1'
+    espressoVersion = '3.0.2'
 }
